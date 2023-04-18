@@ -1,20 +1,14 @@
-<script setup></script>
+<script setup> 
+  import AppHeader from './components/AppHeader.vue';
+  import AppNavigation from './components/AppNavigation.vue';
+  
+</script>
 
 <template>
-  <h1 class="underline text-3xl font-bold">Hello world!</h1>
+  <AppHeader/>
+  <main class="flex-grow ">    
+    
+  </main>
+  <AppNavigation />
 </template>
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
-</style>
