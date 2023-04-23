@@ -6,29 +6,28 @@
   import AppActivities from '@/pages/AppActivities.vue';
   import AppProgress from '@/pages/AppProgress.vue';
   import {ref} from 'vue';
+  import {normalizePageHash} from '@/functions'
 
 
   const currentPage = ref(normalizePageHash());
 
-  function normalizePageHash() {
-    const hash = window.location.hash.slice(1);
-    if (Object.keys([PAGE_TIMELINE, PAGE_ACTIVITIES, PAGE_PROGRESS]).includes(hash)) {
-      return hash
-    }
+  
 
-    window.location.hash = PAGE_TIMELINE;
-    return PAGE_TIMELINE
+  function goTo(page) {
+    currentPage.value = page
   }
   
 </script>
 
 <template>
-  <AppHeader/>
+  <AppHeader 
+    @go-to-timeline="goTo(PAGE_TIMELINE)"
+    @go-to-progress="goTo(PAGE_PROGRESS)"/>
   <main class="flex flex-grow flex-col">
     <AppTimeline v-show="currentPage === PAGE_TIMELINE"/>
     <AppActivities v-show="currentPage === PAGE_ACTIVITIES"/>    
     <AppProgress v-show="currentPage === PAGE_PROGRESS"/>
   </main>
-  <AppNavigation :current-page="currentPage" @navigate="currentPage = $event"/>
+  <AppNavigation :current-page="currentPage" @navigate="goTo($event)"/>
 </template>
 
