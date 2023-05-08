@@ -1,4 +1,5 @@
 <script setup>
+    import { ref } from 'vue';
     import { isTimeLineItemValid } from '../validators';
     import AppSelect from './AppSelect.vue';
 
@@ -31,7 +32,7 @@
         },
     ]
 
-    const selectedActivityId = 3
+    let selectedActivityId = ref()
 </script>
 
 <template>
@@ -42,6 +43,11 @@
         >
             {{ timelineItem.hour }}:00
         </a>
-        <AppSelect :selected="selectedActivityId" :options="options" placeholder="Rest"/>
+        <AppSelect 
+            :selected="selectedActivityId" 
+            :options="options" 
+            placeholder="Rest" 
+            @select="selectedActivityId = $event"
+        />
     </li>
 </template>
